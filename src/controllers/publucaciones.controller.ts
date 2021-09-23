@@ -37,20 +37,19 @@ export default class Publicaciones {
     }
 
     public listarPublicacionesPorComentario(req: Request, res: Response) {
-        let id = req.params.id
-        let comentario = req.params.comentario
-        console.log(id);
+        let id = req.params.id                
         
-        axios({ url: process.env.path+"/"+id+"/"+comentario, method: 'GET' }).then(({ data }:IPublicacion) => {
+        axios({ url: process.env.path+"/"+id+"/comments", method: 'GET' }).then(({ data }:IComentarios) => {
             res.status(200).send({
-                datos: {
-                    
-                        usuario: data.userId,
-                        id: data.id,
-                        titulo: data.title,
-                        cuerpo: data.body
+                data: data.map(item => {
+                    return {
+                        postId: item.postId,
+                        id: item.id,
+                        titulo: item.name,
+                        cuerpo: item.body,
+                        correo:item.email
                     }
-                
+                })
             })
         }).catch(err => res.status(500).send(err))
     }
@@ -65,6 +64,10 @@ interface IPublicacion extends AxiosResponse {
     data: Opublicaciones
 }
 
+interface IComentarios extends AxiosResponse {
+    data: Ocomentarios[]
+}
+
 interface Opublicaciones {
     userId: number,
     id: number,
@@ -72,3 +75,10 @@ interface Opublicaciones {
     body: string
 }
 
+interface Ocomentarios {
+    postId: number,
+    id: number,
+    name: string,
+    email: string,
+    body: string
+}

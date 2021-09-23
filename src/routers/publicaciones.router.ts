@@ -6,5 +6,5 @@ const publicaciones = new Controller()
 
 api.get('/', publicaciones.listarPublicaciones)
 api.get('/porId/:id', publicaciones.listarPublicacionesPorId)
-api.get('/porId/:id/:comentario', publicaciones.listarPublicacionesPorComentario)
+api.get('/porComentario/:id', publicaciones.listarPublicacionesPorComentario)
 
