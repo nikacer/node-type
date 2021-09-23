@@ -3,7 +3,7 @@ import { api } from './routers/publicaciones.router'
 
 
 const app: Express = express();
-const port = 3001;
+const port = 4300;
 
 process.env.path = 'https://jsonplaceholder.typicode.com/posts'
 

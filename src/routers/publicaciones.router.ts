@@ -6,3 +6,4 @@ const publicaciones = new Controller()
 
 api.get('/', publicaciones.listarPublicaciones)
 api.get('/:id', publicaciones.listarPublicacionesById)
+api.get('/:id/comments', publicaciones.listarPublicacionesComments)
