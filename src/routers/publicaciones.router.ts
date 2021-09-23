@@ -5,3 +5,4 @@ export const api: IRouter = express.Router()
 const publicaciones = new Controller()
 
 api.get('/', publicaciones.listarPublicaciones)
+api.get('/:id', publicaciones.listarPublicacionesById)
